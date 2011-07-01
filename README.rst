@@ -15,3 +15,15 @@ Current features include:
  * Atom feeds
  * previewing of blog posts before publishing
  * optional ability to announce new posts on twitter
+
+Some basic configuration help:
+
+1. Add 'biblion' to you apps.
+2. You configure sections as follows:
+
+# set the "display name" for all (ie. untagged entries)
+BIBLION_ALL_SECTION_NAME = "Untagged"
+# add new sections as tuples ('slug', 'displayname')
+BIBLION_SECTIONS = [('tutorials', 'Tutorials'), ('news', 'News')]
+
+3. Copy the supplied templates and format accordingly.
