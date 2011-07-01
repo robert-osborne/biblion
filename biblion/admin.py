@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.functional import curry
 
-from biblion.models import Post, Image
+from biblion.models import Post, Image, Revision
 from biblion.forms import AdminPostForm
 from biblion.utils import can_tweet
 
@@ -37,7 +37,7 @@ class PostAdmin(admin.ModelAdmin):
     published_flag.boolean = True
     
     def formfield_for_dbfield(self, db_field, **kwargs):
-        request = kwargs.pop("request")
+        request = kwargs.get("request")
         if db_field.name == "author":
             ff = super(PostAdmin, self).formfield_for_dbfield(db_field, **kwargs)
             ff.initial = request.user.id
@@ -58,3 +58,4 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Image)
+admin.site.register(Revision)
