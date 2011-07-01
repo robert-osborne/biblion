@@ -25,5 +25,5 @@ class PostManager(models.Manager):
                 section_idx = self.model.section_idx(value)
             except KeyError:
                 raise InvalidSection
-            all_sections = Q(section=self.model.section_idx(ALL_SECTION_NAME))
+            all_sections = Q(section=self.model.section_idx("all"))
             return queryset.filter(all_sections | Q(section=section_idx))

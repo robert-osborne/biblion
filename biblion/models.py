@@ -30,7 +30,8 @@ def ig(L, i):
 
 class Post(models.Model):
     
-    SECTION_CHOICES = [(1, ALL_SECTION_NAME)] + zip(range(2, 2 + len(SECTIONS)), ig(SECTIONS, 1))
+    SECTION_CHOICES = [(1, "all")] + zip(range(2, 2 + len(SECTIONS)), ig(SECTIONS, 1))
+    SECTION_NAMES = [(1, ALL_SECTION_NAME)] + zip(range(2, 2 + len(SECTIONS)), ig(SECTIONS, 1))
     
     section = models.IntegerField(choices=SECTION_CHOICES)
     
@@ -54,7 +55,7 @@ class Post(models.Model):
         """
         given a slug return the index for it
         """
-        if slug == ALL_SECTION_NAME:
+        if slug == "all":
             return 1
         return dict(zip(ig(SECTIONS, 0), range(2, 2 + len(SECTIONS))))[slug]
     
@@ -65,7 +66,7 @@ class Post(models.Model):
         need a property to turn them back into their slug form
         """
         if self.section == 1:
-            return ALL_SECTION_NAME
+            return "all"
         return dict(zip(range(2, 2 + len(SECTIONS)), ig(SECTIONS, 0)))[self.section]
     
     def rev(self, rev_id):

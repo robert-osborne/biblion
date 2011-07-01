@@ -32,7 +32,7 @@ def blog_section_list(request, section):
     
     return render_to_response("biblion/blog_section_list.html", {
         "section_slug": section,
-        "section_name": dict(Post.SECTION_CHOICES)[Post.section_idx(section)],
+        "section_name": dict(Post.SECTION_NAMES)[Post.section_idx(section)],
         "posts": posts,
     }, context_instance=RequestContext(request))
 
